@@ -1,9 +1,8 @@
-# Progetto Laravel
+<?php
 
-## Descrizione
-Progetto in cui si svolgono degli esercizi
-
-## Installazione
+$projectName = "Progetto Laravel";
+$description = "Progetto in cui si svolgono degli esercizi";
+$installation = <<<EOT
 1. Clonare il progetto
 2. Navigare nella directory principale del progetto utilizzando il terminale
 3. Creare il file `.env` usando questo comando nel terminale
@@ -36,8 +35,9 @@ Progetto in cui si svolgono degli esercizi
     ```sh
     php artisan serve
     ```
+EOT;
 
-## Utilizzo
+$usage = <<<EOT
 ### PROVA PROGETTO
 1. Importa su Postman la collection e l'environment che sono dentro la cartella "postman"
 2. Effettua la request "register request" per creare l'utente (nome, mail e password)
@@ -50,3 +50,22 @@ Progetto in cui si svolgono degli esercizi
 3. Cercare per service (/api/asset-classes?service=Elettrico)
 4. Cercare per commission (/api/asset-classes?commission=Commessa maia)
 5. Combinando più criteri di ricerca (/api/asset-classes?name=Quadro&service=Elettrico&commission=Commessa maia)
+EOT;
+
+$readmeContent = <<<EOT
+# $projectName
+
+## Descrizione
+$description
+
+## Installazione
+$installation
+
+## Utilizzo
+$usage
+
+EOT;
+
+file_put_contents('README.md', $readmeContent);
+
+echo "README.md generato con successo!";
