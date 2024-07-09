@@ -50,3 +50,6 @@ Progetto in cui si svolgono degli esercizi
 3. Cercare per service (/api/asset-classes?service=Elettrico)
 4. Cercare per commission (/api/asset-classes?commission=Commessa maia)
 5. Combinando più criteri di ricerca (/api/asset-classes?name=Quadro&service=Elettrico&commission=Commessa maia)
+
+## Documentazione UI
+Il link per la documentazione API Rest è questo: http://127.0.0.1:8000/api/documentation
