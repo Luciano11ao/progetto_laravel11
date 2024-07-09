@@ -8,41 +8,39 @@ use App\Http\Controllers\Maia\CommissionController;
 use App\Http\Controllers\Maia\ServiceController;
 use App\Http\Controllers\Maia\AssetClassController;
 
-
 Route::post("register", [ApiController::class, "register"]);
 Route::post("login", [ApiController::class, "login"]);
 
 Route::middleware('auth:sanctum')->group(function () {
-    // Notes Routes
+    // Notes
     Route::get('/notes', [APINoteController::class, 'index']);
     Route::post('/notes', [APINoteController::class, 'store']);
     Route::put('/notes/{id}', [APINoteController::class, 'update']);
     Route::delete('/notes/{id}', [APINoteController::class, 'destroy']);
+    Route::post('/notes/import', [APINoteController::class, 'importNotes']);
+    Route::post('/notes/importExcel', [APINoteController::class, 'importNotesExcel']);
 
-    // Asset Classes Routes
+    // AssetClass
     Route::get('/asset_classes', [AssetClassController::class, 'index']);
     Route::post('/asset_classes', [AssetClassController::class, 'store']);
     Route::get('/asset_classes/{id}', [AssetClassController::class, 'show']);
     Route::put('/asset_classes/{id}', [AssetClassController::class, 'update']);
     Route::delete('/asset_classes/{id}', [AssetClassController::class, 'destroy']);
 
-    // Services Routes
+    // Service
     Route::get('/services', [ServiceController::class, 'index']);
     Route::post('/services', [ServiceController::class, 'store']);
     Route::get('/services/{id}', [ServiceController::class, 'show']);
     Route::put('/services/{id}', [ServiceController::class, 'update']);
     Route::delete('/services/{id}', [ServiceController::class, 'destroy']);
 
-    // Commissions Routes
+    // Commission
     Route::get('/commissions', [CommissionController::class, 'index']);
     Route::post('/commissions', [CommissionController::class, 'store']);
     Route::get('/commissions/{id}', [CommissionController::class, 'show']);
     Route::put('/commissions/{id}', [CommissionController::class, 'update']);
     Route::delete('/commissions/{id}', [CommissionController::class, 'destroy']);
 
-    // Custom Route for Asset Classes
+    // Esercizio di Riccardo (filter)
     Route::get('asset-classes', [AssetClassController::class, 'getAssetClasses']);
 });
-
-Route::post('/notes/import', [APINoteController::class, 'importNotes']);
-Route::post('/notes/importExcel', [APINoteController::class, 'importNotesExcel']);

@@ -5,98 +5,143 @@ namespace App\Http\Controllers\Maia;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\AssetClass;
-use App\Models\Commission;
-use App\Models\Service;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 
+/**
+ * @OA\Info(title="Documentazione API rest", version="1.0")
+ */
+
 class AssetClassController extends Controller
 {
+
+    /**
+     * @OA\Get(
+     *     path="/api/asset_classes",
+     *     summary="Torna la lista degli asset classes",
+     *     tags={"AssetClass"},
+     *     @OA\Response(response=200, description="Successo"),
+     *     @OA\Response(response=400, description="Errore")
+     * )
+     */
     public function index()
     {
         $assetClasses = AssetClass::all();
         return response()->json($assetClasses);
     }
 
+    /**
+     * @OA\Post(
+     *     path="/api/asset_classes",
+     *     summary="Crea un'asset class",
+     *     tags={"AssetClass"},
+     *     @OA\Response(response=200, description="Asset class creata con successo"),
+     *     @OA\Response(response=400, description="Errore 400!")
+     * )
+     */
     public function store(Request $request)
-{
-    Log::debug('Entering store method for AssetClass');
-
-    try {
+    {
+        // Validazione
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'service_id' => 'required|integer|exists:services,id',
             'commission_id' => 'required|integer|exists:commissions,id',
         ]);
-    } catch (ValidationException $e) {
-        Log::error('Validation failed for AssetClass: ' . json_encode($e->errors()));
-        return response()->json([
-            'message' => 'Validation failed',
-            'errors' => $e->errors()
-        ], 422);
-    }
 
-    Log::debug('Validation passed for AssetClass: ' . json_encode($validatedData));
-
-    try {
+        // Creazione di una nuova istanza di AssetClass
         $assetClass = AssetClass::create($validatedData);
-        Log::debug('Asset class created successfully: ' . json_encode($assetClass));
 
-        return response()->json([
-            'message' => 'Asset class created successfully',
-            'data' => $assetClass
-        ], 201);
-    } catch (\Exception $e) {
-        Log::error('Error creating asset class: ' . $e->getMessage());
-        return response()->json([
-            'message' => 'Failed to create asset class',
-            'error' => $e->getMessage()
-        ], 500);
+        // Blocco if per la risposta
+        if ($assetClass) {
+            return response()->json([
+                'message' => 'Asset class creata con successo',
+                'data' => $assetClass
+            ], 200);
+        } else {
+            return response()->json([
+                'message' => 'Errore 400!'
+            ], 400);
+        }
     }
 
-}
-
-public function show($id)
-{
-    $assetClass = AssetClass::find($id);
-    if ($assetClass) {
-        return response()->json($assetClass);
-    } else {
-        return response()->json(['message' => 'Asset class not found'], 404);
+    /**
+     * @OA\Get(
+     *     path="/api/asset_classes/{id}",
+     *     summary="Torna l'asset class con l'id specificato nell'URL",
+     *     tags={"AssetClass"},
+     *     @OA\Response(response=200, description="Successo"),
+     *     @OA\Response(response=404, description="Asset class non trovata")
+     * )
+     */
+    public function show($id)
+    {
+        $assetClass = AssetClass::find($id);
+        if ($assetClass) {
+            return response()->json($assetClass);
+        } else {
+            return response()->json(['message' => 'Asset class non trovata'], 404);
+        }
     }
-}
 
+    /**
+     * @OA\Put(
+     *     path="/api/asset_classes/{id}",
+     *     summary="Aggiorna un'asset class con l'id specificato nell'URL",
+     *     tags={"AssetClass"},
+     *     @OA\Response(response=200, description="Update avvenuto con successo"),
+     *     @OA\Response(response=404, description="Asset class non trovata")
+     * )
+     */
     public function update(Request $request, $id)
-{
-    $validatedData = $request->validate([
-        'name' => 'sometimes|required|string|max:255',
-        'service_id' => 'sometimes|required|integer|exists:services,id',
-        'commission_id' => 'sometimes|required|integer|exists:commissions,id',
-    ]);
-
-    $assetClass = AssetClass::find($id);
-    if ($assetClass) {
-        $assetClass->update($validatedData);
-        return response()->json([
-            'message' => 'Asset class updated successfully',
-            'data' => $assetClass
+    {
+        // Validazione
+        $validatedData = $request->validate([
+            'name' => 'sometimes|required|string|max:255',
+            'service_id' => 'sometimes|required|integer|exists:services,id',
+            'commission_id' => 'sometimes|required|integer|exists:commissions,id',
         ]);
-    } else {
-        return response()->json(['message' => 'Asset class not found'], 404);
-    }
-}
 
+        $assetClass = AssetClass::find($id);
+        if ($assetClass) {
+            $assetClass->update($validatedData);
+            return response()->json([
+                'message' => 'Update avvenuto con successo',
+                'data' => $assetClass
+            ]);
+        } else {
+            return response()->json(['message' => 'Asset class non trovata'], 404);
+        }
+    }
+
+    /**
+     * @OA\Delete(
+     *     path="/api/asset_classes/{id}",
+     *     summary="Elimina l'asset class con l'id specificato",
+     *     tags={"AssetClass"},
+     *     @OA\Response(response=200, description="Asset class eliminata con successo"),
+     *     @OA\Response(response=404, description="Asset class non trovata")
+     * )
+     */
     public function destroy($id)
-{
-    $assetClass = AssetClass::find($id);
-    if ($assetClass) {
-        $assetClass->delete();
-        return response()->json(['message' => 'Asset class deleted successfully']);
-    } else {
-        return response()->json(['message' => 'Asset class not found'], 404);
+    {
+        $assetClass = AssetClass::find($id);
+        if ($assetClass) {
+            $assetClass->delete();
+            return response()->json(['message' => 'Asset class eliminata con successo']);
+        } else {
+            return response()->json(['message' => 'Asset class non trovata'], 404);
+        }
     }
-}
 
+    /**
+     * @OA\Get(
+     *     path="/api/asset-classes",
+     *     summary="Torna una lista di asset classes con i filtri specificati",
+     *     tags={"AssetClass"},
+     *     @OA\Response(response=200, description="Successo"),
+     *     @OA\Response(response=400, description="Errore")
+     * )
+     */
     public function getAssetClasses(Request $request)
     {
         $query = AssetClass::query();

@@ -1,0 +1,301 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Documentazione API rest",
+        "version": "1.0"
+    },
+    "paths": {
+        "/api/asset_classes": {
+            "get": {
+                "tags": [
+                    "AssetClass"
+                ],
+                "summary": "Torna la lista degli asset classes",
+                "operationId": "9a43c80965dc6a9076404077f8f4e344",
+                "responses": {
+                    "200": {
+                        "description": "Successo"
+                    },
+                    "400": {
+                        "description": "Errore"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "AssetClass"
+                ],
+                "summary": "Crea un'asset class",
+                "operationId": "880443fef4c774d4c726a25ba37da5eb",
+                "responses": {
+                    "200": {
+                        "description": "Asset class creata con successo"
+                    },
+                    "400": {
+                        "description": "Errore 400!"
+                    }
+                }
+            }
+        },
+        "/api/asset_classes/{id}": {
+            "get": {
+                "tags": [
+                    "AssetClass"
+                ],
+                "summary": "Torna l'asset class con l'id specificato nell'URL",
+                "operationId": "b46c90ce8866feaf81aa8dd9a5845bbb",
+                "responses": {
+                    "200": {
+                        "description": "Successo"
+                    },
+                    "404": {
+                        "description": "Asset class non trovata"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "AssetClass"
+                ],
+                "summary": "Aggiorna un'asset class con l'id specificato nell'URL",
+                "operationId": "158683e066d26aeff4ca40b56d6cf9b9",
+                "responses": {
+                    "200": {
+                        "description": "Update avvenuto con successo"
+                    },
+                    "404": {
+                        "description": "Asset class non trovata"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "AssetClass"
+                ],
+                "summary": "Elimina l'asset class con l'id specificato",
+                "operationId": "36be41495751481a639d361123506502",
+                "responses": {
+                    "200": {
+                        "description": "Asset class eliminata con successo"
+                    },
+                    "404": {
+                        "description": "Asset class non trovata"
+                    }
+                }
+            }
+        },
+        "/api/asset-classes": {
+            "get": {
+                "tags": [
+                    "AssetClass"
+                ],
+                "summary": "Torna una lista di asset classes con i filtri specificati",
+                "operationId": "625b2fd1c55414ff140e838dd2734282",
+                "responses": {
+                    "200": {
+                        "description": "Successo"
+                    },
+                    "400": {
+                        "description": "Errore"
+                    }
+                }
+            }
+        },
+        "/api/commissions": {
+            "get": {
+                "tags": [
+                    "Commissions"
+                ],
+                "summary": "Torna la lista delle commission",
+                "operationId": "230f5c7f1ea9c9dad573c5434470c988",
+                "responses": {
+                    "200": {
+                        "description": "Successo"
+                    },
+                    "400": {
+                        "description": "Errore"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Commissions"
+                ],
+                "summary": "Crea una commission",
+                "operationId": "b432771dbb4c8bfda2a9d58e5cf7cc1a",
+                "responses": {
+                    "200": {
+                        "description": "Creazione avvenuta con successo"
+                    },
+                    "400": {
+                        "description": "Creazione fallita"
+                    }
+                }
+            }
+        },
+        "/api/commissions/{id}": {
+            "get": {
+                "tags": [
+                    "Commissions"
+                ],
+                "summary": "Torna la commission con l'id specificato",
+                "operationId": "eeb9ba1fac6c25cf8faa7b9bc274ebed",
+                "responses": {
+                    "200": {
+                        "description": "Successo"
+                    },
+                    "404": {
+                        "description": "Commission non trovata"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Commissions"
+                ],
+                "summary": "Fa l'update di una commission con l'id specificato",
+                "operationId": "dbf747d8d5a833b247378f811332ee65",
+                "responses": {
+                    "200": {
+                        "description": "Update avvenuto con successo"
+                    },
+                    "400": {
+                        "description": "Update fallito"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Commissions"
+                ],
+                "summary": "Elimina la commission con l'id specificato",
+                "operationId": "61d19d406e0ec5ff86720fbcdef9dbb9",
+                "responses": {
+                    "200": {
+                        "description": "Commission eliminata con successo"
+                    },
+                    "404": {
+                        "description": "Commission non trovata"
+                    }
+                }
+            }
+        },
+        "/api/services": {
+            "get": {
+                "tags": [
+                    "Service"
+                ],
+                "summary": "Torna una lista di service",
+                "operationId": "1d9df30d3f7c1c8334e5d7c73d232de4",
+                "responses": {
+                    "200": {
+                        "description": "Successo"
+                    },
+                    "400": {
+                        "description": "Errore"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Service"
+                ],
+                "summary": "Crea un service",
+                "operationId": "010093c33b6b285def64a2068d4241ff",
+                "responses": {
+                    "200": {
+                        "description": "Service creato con successo"
+                    },
+                    "400": {
+                        "description": "Creazione service fallita"
+                    }
+                }
+            }
+        },
+        "/api/services/{id}": {
+            "get": {
+                "tags": [
+                    "Service"
+                ],
+                "summary": "Torna il service con l'id specificato",
+                "operationId": "791d4b9f235837d8e65d6611721eba2b",
+                "responses": {
+                    "200": {
+                        "description": "Successo"
+                    },
+                    "404": {
+                        "description": "Service non trovato"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Service"
+                ],
+                "summary": "Fa l'update del service con l'id specificato",
+                "operationId": "8b3aa18d8d28cd74747ab11b51c373c7",
+                "responses": {
+                    "200": {
+                        "description": "Update avvenuto con successo"
+                    },
+                    "404": {
+                        "description": "Service non trovato"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Service"
+                ],
+                "summary": "Elimina il service con l'id specificato",
+                "operationId": "606bc673836b30369c7209022258f7ed",
+                "responses": {
+                    "200": {
+                        "description": "Service eliminato con successo"
+                    },
+                    "404": {
+                        "description": "Service non trovato"
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "AssetClass",
+            "description": "AssetClass"
+        },
+        {
+            "name": "Commissions",
+            "description": "Commissions"
+        },
+        {
+            "name": "Service",
+            "description": "Service"
+        }
+    ],
+    "components": {
+        "securitySchemes": {
+            "passport": {
+                "type": "oauth2",
+                "description": "Laravel passport oauth2 security.",
+                "in": "header",
+                "scheme": "https",
+                "flows": {
+                    "password": {
+                        "authorizationUrl": "http://localhost/oauth/authorize",
+                        "tokenUrl": "http://localhost/oauth/token",
+                        "refreshUrl": "http://localhost/token/refresh",
+                        "scopes": []
+                    }
+                }
+            },
+            "sanctum": {
+                "type": "apiKey",
+                "description": "Enter token in format (Bearer <token>)",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
+    }
+}
