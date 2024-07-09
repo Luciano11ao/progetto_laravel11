@@ -14,8 +14,8 @@ class Commission extends Model
         'description'
     ];
 
-    public function assetClasses()
+    public function services()
     {
-        return $this->belongsTo(AssetClass::class);
+        return $this->hasMany(Service::class);
     }
 }

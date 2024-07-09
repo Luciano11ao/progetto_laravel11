@@ -13,11 +13,11 @@ class Service extends Model
 
     public function commission()
     {
-        return $this->has(Commission::class);
+        return $this->belongsTo(Commission::class);
     }
 
-    public function assetClasses()
+    public function assetClass()
     {
-        return $this->belongsTo(AssetClass::class);
+        return $this->hasOne(AssetClass::class);
     }
 }

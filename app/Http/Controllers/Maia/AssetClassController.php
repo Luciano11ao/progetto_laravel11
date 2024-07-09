@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\AssetClass;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Validation\ValidationException;
 
 /**
  * @OA\Info(title="Documentazione API rest", version="1.0")
@@ -146,6 +145,8 @@ class AssetClassController extends Controller
     {
         $query = AssetClass::query();
 
+        Log::info('Sono prima del blocco if');
+
         if ($request->has('id')) {
             $query->where('id', $request->input('id'));
         }
@@ -174,6 +175,9 @@ class AssetClassController extends Controller
                 'commission_name' => $assetClass->service && $assetClass->service->commission ? $assetClass->service->commission->name : null,
             ];
         });
+
+        Log::info('Sono prima della risposta');
+
 
         return response()->json($transformedAssetClasses);
     }
