@@ -39,7 +39,7 @@ Progetto in cui si svolgono degli esercizi
 
 ## Utilizzo
 ### PROVA PROGETTO
-1. Importa su Postman la collection e l'environment che sono dentro la cartella "postman"
+1. Importa su Postmann entrambe le collection e l'environment che sono dentro la cartella "postman"
 2. Effettua la request "register request" per creare l'utente (nome, mail e password)
 3. Effettua la login "login request" mettendo nell'header mail e password (identiche a quelle di registrazione), e dopo copiare il token che appare nella risposta, per poi incollarlo in ogni richiesta
 4. Per visualizzare la lista degli asset con i relativi criteri di ricerca, eseguire la "get_Asset_classes request":
