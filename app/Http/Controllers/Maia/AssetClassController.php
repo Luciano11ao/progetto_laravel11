@@ -112,8 +112,8 @@ class AssetClassController extends Controller
      *     summary="Torna una lista di asset classes con i filtri specificati",
      *     tags={"AssetClass"},
      *     @OA\Response(response=200, description="Successo"),
-     *     @OA\Response(response=400, description="Errore")
-     *     @OA\Response(response=400, description="Filtro non riconosciuto")
+     *     @OA\Response(response=400, description="Errore"),
+     *     @OA\Response(response=404, description="Filtro non riconosciuto")
      * )
      */
     public function getAssetClasses(Request $request)

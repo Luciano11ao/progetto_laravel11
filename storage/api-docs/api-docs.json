@@ -6,53 +6,76 @@
     },
     "paths": {
         "/api/asset_classes": {
-            "get": {
-                "tags": [
-                    "AssetClass"
-                ],
-                "summary": "Torna la lista degli asset classes",
-                "operationId": "9a43c80965dc6a9076404077f8f4e344",
-                "responses": {
-                    "200": {
-                        "description": "Successo"
-                    },
-                    "400": {
-                        "description": "Errore"
-                    }
+    "post": {
+        "tags": [
+            "AssetClass"
+        ],
+        "summary": "Crea un'asset class",
+        "operationId": "880443fef4c774d4c726a25ba37da5eb",
+        "parameters": [
+            {
+                "name": "name",
+                "in": "formData",
+                "description": "Nome dell'asset class da creare (case sensitive)",
+                "required": true,
+                "schema": {
+                    "type": "string"
                 }
             },
-            "post": {
-                "tags": [
-                    "AssetClass"
-                ],
-                "summary": "Crea un'asset class",
-                "operationId": "880443fef4c774d4c726a25ba37da5eb",
-                "responses": {
-                    "200": {
-                        "description": "Asset class creata con successo"
-                    },
-                    "400": {
-                        "description": "Errore 400!"
-                    }
+            {
+                "name": "service_id",
+                "in": "formData",
+                "description": "ID del servizio associato all'asset class",
+                "required": true,
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            {
+                "name": "commission_id",
+                "in": "formData",
+                "description": "ID della commissione associata all'asset class",
+                "required": true,
+                "schema": {
+                    "type": "integer"
+                }
+            },
+            {
+                "name": "asset_name",
+                "in": "formData",
+                "description": "Nome dell'assetClass da cercare (case insensitive)",
+                "schema": {
+                    "type": "string"
+                }
+            },
+            {
+                "name": "service_name",
+                "in": "formData",
+                "description": "Nome del service da cercare (case insensitive)",
+                "schema": {
+                    "type": "string"
+                }
+            },
+            {
+                "name": "commission_name",
+                "in": "formData",
+                "description": "Nome della commission da cercare (case insensitive)",
+                "schema": {
+                    "type": "string"
                 }
             }
-        },
-        "/api/asset_classes/{id}": {
-            "get": {
-                "tags": [
-                    "AssetClass"
-                ],
-                "summary": "Torna l'asset class con l'id specificato nell'URL",
-                "operationId": "b46c90ce8866feaf81aa8dd9a5845bbb",
-                "responses": {
-                    "200": {
-                        "description": "Successo"
-                    },
-                    "404": {
-                        "description": "Asset class non trovata"
-                    }
-                }
+        ],
+        "responses": {
+            "200": {
+                "description": "Asset class creata con successo"
             },
+            "400": {
+                "description": "Asset class già esistente"
+            }
+        }
+    }
+},
+        "/api/asset_classes/{id}": {
             "put": {
                 "tags": [
                     "AssetClass"
@@ -65,6 +88,9 @@
                     },
                     "404": {
                         "description": "Asset class non trovata"
+                    },
+                    "400": {
+                        "description": "Questo nome già esiste"
                     }
                 }
             },
@@ -97,6 +123,12 @@
                     },
                     "400": {
                         "description": "Errore"
+                    },
+                    "404": {
+                        "description": "Filtro non riconosciuto"
+                    },
+                    "201": {
+                        "description": ""
                     }
                 }
             }
@@ -125,30 +157,15 @@
                 "operationId": "b432771dbb4c8bfda2a9d58e5cf7cc1a",
                 "responses": {
                     "200": {
-                        "description": "Creazione avvenuta con successo"
+                        "description": "Commission creata con successo"
                     },
                     "400": {
-                        "description": "Creazione fallita"
+                        "description": "Commission già esistente"
                     }
                 }
             }
         },
         "/api/commissions/{id}": {
-            "get": {
-                "tags": [
-                    "Commissions"
-                ],
-                "summary": "Torna la commission con l'id specificato",
-                "operationId": "eeb9ba1fac6c25cf8faa7b9bc274ebed",
-                "responses": {
-                    "200": {
-                        "description": "Successo"
-                    },
-                    "404": {
-                        "description": "Commission non trovata"
-                    }
-                }
-            },
             "put": {
                 "tags": [
                     "Commissions"
@@ -160,7 +177,10 @@
                         "description": "Update avvenuto con successo"
                     },
                     "400": {
-                        "description": "Update fallito"
+                        "description": "Commission già esistente"
+                    },
+                    "404": {
+                        "description": "Commission inesistente"
                     }
                 }
             },
@@ -207,27 +227,12 @@
                         "description": "Service creato con successo"
                     },
                     "400": {
-                        "description": "Creazione service fallita"
+                        "description": "Service già esistente"
                     }
                 }
             }
         },
         "/api/services/{id}": {
-            "get": {
-                "tags": [
-                    "Service"
-                ],
-                "summary": "Torna il service con l'id specificato",
-                "operationId": "791d4b9f235837d8e65d6611721eba2b",
-                "responses": {
-                    "200": {
-                        "description": "Successo"
-                    },
-                    "404": {
-                        "description": "Service non trovato"
-                    }
-                }
-            },
             "put": {
                 "tags": [
                     "Service"
@@ -239,7 +244,10 @@
                         "description": "Update avvenuto con successo"
                     },
                     "404": {
-                        "description": "Service non trovato"
+                        "description": "Service inesistente"
+                    },
+                    "400": {
+                        "description": "Service già esistente"
                     }
                 }
             },
