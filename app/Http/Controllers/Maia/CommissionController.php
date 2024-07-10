@@ -30,47 +30,30 @@ class CommissionController extends Controller
      *     path="/api/commissions",
      *     summary="Crea una commission",
      *     tags={"Commissions"},
-     *     @OA\Response(response=200, description="Creazione avvenuta con successo"),
-     *     @OA\Response(response=400, description="Creazione fallita")
+     *     @OA\Response(response=200, description="Commission creata con successo"),
+     *     @OA\Response(response=400, description="Commission già esistente")
      * )
      */
     public function store(Request $request)
     {
+        // Validazione
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
         ]);
 
+        // Verifica del nome
+        $existingCommission = Commission::where('name', $validatedData['name'])->first();
+        if ($existingCommission) {
+            return response()->json(['message' => 'Commission già esistente'], 400);
+        }
+
         $commission = Commission::create($validatedData);
 
-        if ($commission) {
-            return response()->json([
-                'message' => 'Creazione avvenuta con successo',
-                'commission' => $commission
-            ], 200);
-        } else {
-            return response()->json(['error' => 'Creazione fallita'], 400);
-        }
-    }
-
-    /**
-     * @OA\Get(
-     *     path="/api/commissions/{id}",
-     *     summary="Torna la commission con l'id specificato",
-     *     tags={"Commissions"},
-     *     @OA\Response(response=200, description="Successo"),
-     *     @OA\Response(response=404, description="Commission non trovata")
-     * )
-     */
-    public function show($id)
-    {
-        $commission = Commission::findOrFail($id);
-
-        if ($commission) {
-            return response()->json($commission, 200);
-        } else {
-            return response()->json(['error' => 'Commission non trovata'], 404);
-        }
+        return response()->json([
+            'message' => 'Commission creata con successo',
+            'data' => $commission
+        ], 200);
     }
 
     /**
@@ -79,23 +62,36 @@ class CommissionController extends Controller
      *     summary="Fa l'update di una commission con l'id specificato",
      *     tags={"Commissions"},
      *     @OA\Response(response=200, description="Update avvenuto con successo"),
-     *     @OA\Response(response=400, description="Update fallito")
+     *     @OA\Response(response=400, description="Commission già esistente"),
+     *     @OA\Response(response=404, description="Commission inesistente")
      * )
      */
     public function update(Request $request, $id)
     {
-        $commission = Commission::findOrFail($id);
-
-        $request->validate([
+        // Validazione
+        $validatedData = $request->validate([
             'name' => 'sometimes|required|string|max:255',
             'description' => 'sometimes|nullable|string',
         ]);
 
-        if ($commission->update($request->all())) {
-            return response()->json($commission, 200);
-        } else {
-            return response()->json(['error' => 'Update fallito'], 400);
+        // Verifica del nome
+        $existingCommission = Commission::where('name', $validatedData['name'])->first();
+        if ($existingCommission) {
+            return response()->json(['message' => 'Commission già esistente'], 400);
         }
+
+        // Controllo dell'id
+        $commission = Commission::find($id);
+        if (!$commission) {
+            return response()->json(['message' => 'Commission inesistente'], 404);
+        }
+
+        $commission->update($validatedData);
+
+        return response()->json([
+            'message' => 'Update avvenuto con successo',
+            'data' => $commission
+        ]);
     }
 
     /**
