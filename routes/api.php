@@ -12,6 +12,7 @@ Route::post("register", [ApiController::class, "register"]);
 Route::post("login", [ApiController::class, "login"]);
 
 Route::middleware('auth:sanctum')->group(function () {
+
     // Notes
     Route::get('/notes', [APINoteController::class, 'index']);
     Route::post('/notes', [APINoteController::class, 'store']);
@@ -21,7 +22,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/notes/importExcel', [APINoteController::class, 'importNotesExcel']);
 
     // AssetClass
-    Route::get('/asset_classes', [AssetClassController::class, 'index']);
+    Route::get('/asset_classes', [AssetClassController::class, 'getAssetClasses']);
     Route::post('/asset_classes', [AssetClassController::class, 'store']);
     Route::get('/asset_classes/{id}', [AssetClassController::class, 'show']);
     Route::put('/asset_classes/{id}', [AssetClassController::class, 'update']);
@@ -41,6 +42,4 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/commissions/{id}', [CommissionController::class, 'update']);
     Route::delete('/commissions/{id}', [CommissionController::class, 'destroy']);
 
-    // Esercizio di Riccardo (filter)
-    Route::get('asset-classes', [AssetClassController::class, 'getAssetClasses']);
 });

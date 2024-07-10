@@ -41,15 +41,15 @@ Progetto in cui si svolgono degli esercizi
 ### PROVA PROGETTO
 1. Importa su Postmann entrambe le collection e l'environment che sono dentro la cartella "postman"
 2. Effettua la request "register request" per creare l'utente (nome, mail e password)
-3. Effettua la login "login request" mettendo nell'header mail e password (identiche a quelle di registrazione), e dopo copiare il token che appare nella risposta, per poi incollarlo in ogni richiesta
+3. Effettua la login "login request" mettendo nell'header mail e password (identiche a quelle di registrazione), e dopo copiare il token che appare nella risposta, per poi incollarlo nell'authorization in ogni richiesta
 4. Per visualizzare la lista degli asset con i relativi criteri di ricerca, eseguire la "get_Asset_classes request":
 
-#### Esempi dei criteri di ricerca
+#### Esempi dei criteri di ricerca (case insensitive)
 1. Cercare per id (/api/asset-classes?id=1)
-2. Cercare per name (/api/asset-classes?name=Quadro)
-3. Cercare per service (/api/asset-classes?service=Elettrico)
-4. Cercare per commission (/api/asset-classes?commission=Commessa maia)
-5. Combinando più criteri di ricerca (/api/asset-classes?name=Quadro&service=Elettrico&commission=Commessa maia)
+2. Cercare per name (/api/asset-classes?asset_name=Quadro)
+3. Cercare per service (/api/asset-classes?service_name=Elettrico)
+4. Cercare per commission (/api/asset-classes?commission_name=Commessa maia)
+5. Combinando più criteri di ricerca (/api/asset-classes?asset_name=Quadro&service_name=Elettrico&commission_name=Commessa maia)
 
 ## Documentazione UI
 Il link per la documentazione API Rest è questo: http://127.0.0.1:8000/api/documentation
