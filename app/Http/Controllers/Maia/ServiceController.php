@@ -29,40 +29,29 @@ class ServiceController extends Controller
      *     summary="Crea un service",
      *     tags={"Service"},
      *     @OA\Response(response=200, description="Service creato con successo"),
-     *     @OA\Response(response=400, description="Creazione service fallita")
+     *     @OA\Response(response=400, description="Service già esistente")
      * )
      */
     public function store(Request $request)
     {
         // Validazione
-        $request->validate([
+        $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'commission_id' => 'required|exists:commissions,id',
         ]);
 
-        $service = Service::create($request->all());
-
-        // Blocco if per la risposta
-        if ($service) {
-            return response()->json($service, 200);
-        } else {
-            return response()->json(['error' => 'Creazione service fallita'], 400);
+        // Verifica del nome
+        $existingService = Service::where('name', $validatedData['name'])->first();
+        if ($existingService) {
+            return response()->json(['message' => 'Service già esistente'], 400);
         }
-    }
 
-    /**
-     * @OA\Get(
-     *     path="/api/services/{id}",
-     *     summary="Torna il service con l'id specificato",
-     *     tags={"Service"},
-     *     @OA\Response(response=200, description="Successo"),
-     *     @OA\Response(response=404, description="Service non trovato")
-     * )
-     */
-    public function show($id)
-    {
-        $service = Service::findOrFail($id);
-        return response()->json($service);
+        $service = Service::create($validatedData);
+
+        return response()->json([
+            'message' => 'Service creato con successo',
+            'data' => $service
+        ], 200);
     }
 
     /**
@@ -71,24 +60,36 @@ class ServiceController extends Controller
      *     summary="Fa l'update del service con l'id specificato",
      *     tags={"Service"},
      *     @OA\Response(response=200, description="Update avvenuto con successo"),
-     *     @OA\Response(response=404, description="Service non trovato")
+     *     @OA\Response(response=404, description="Service inesistente"),
+     *     @OA\Response(response=400, description="Service già esistente")
      * )
      */
     public function update(Request $request, $id)
     {
-        $service = Service::findOrFail($id);
-
         // Validazione
-        $request->validate([
+        $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'commission_id' => 'required|exists:commissions,id',
         ]);
 
-        if ($service->update($request->all())) {
-            return response()->json($service, 200);
-        } else {
-            return response()->json(['error' => 'Service non trovato'], 404);
+        // Verifica del nome
+        $existingService = Service::where('name', $validatedData['name'])->first();
+        if ($existingService) {
+            return response()->json(['message' => 'Service già esistente'], 400);
         }
+
+        // Controllo dell'id
+        $service = Service::find($id);
+        if (!$service) {
+            return response()->json(['message' => 'Service inesistente'], 404);
+        }
+
+        $service->update($validatedData);
+
+        return response()->json([
+            'message' => 'Update avvenuto con successo',
+            'data' => $service
+        ]);
     }
 
     /**

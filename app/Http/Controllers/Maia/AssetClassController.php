@@ -32,10 +32,7 @@ class AssetClassController extends Controller
         'commission_id' => 'required|integer|exists:commissions,id',
     ]);
 
-    $existingAsset = AssetClass::where('name', $validatedData['name'])
-                               ->where('service_id', $validatedData['service_id'])
-                               ->where('commission_id', $validatedData['commission_id'])
-                               ->first();
+    $existingAsset = AssetClass::where('name', $validatedData['name'])->first();
 
     if ($existingAsset) {
         return response()->json(['message' => 'Asset class già esistente'], 400);
