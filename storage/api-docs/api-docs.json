@@ -6,75 +6,22 @@
     },
     "paths": {
         "/api/asset_classes": {
-    "post": {
-        "tags": [
-            "AssetClass"
-        ],
-        "summary": "Crea un'asset class",
-        "operationId": "880443fef4c774d4c726a25ba37da5eb",
-        "parameters": [
-            {
-                "name": "name",
-                "in": "formData",
-                "description": "Nome dell'asset class da creare (case sensitive)",
-                "required": true,
-                "schema": {
-                    "type": "string"
-                }
-            },
-            {
-                "name": "service_id",
-                "in": "formData",
-                "description": "ID del servizio associato all'asset class",
-                "required": true,
-                "schema": {
-                    "type": "integer"
-                }
-            },
-            {
-                "name": "commission_id",
-                "in": "formData",
-                "description": "ID della commissione associata all'asset class",
-                "required": true,
-                "schema": {
-                    "type": "integer"
-                }
-            },
-            {
-                "name": "asset_name",
-                "in": "formData",
-                "description": "Nome dell'assetClass da cercare (case insensitive)",
-                "schema": {
-                    "type": "string"
-                }
-            },
-            {
-                "name": "service_name",
-                "in": "formData",
-                "description": "Nome del service da cercare (case insensitive)",
-                "schema": {
-                    "type": "string"
-                }
-            },
-            {
-                "name": "commission_name",
-                "in": "formData",
-                "description": "Nome della commission da cercare (case insensitive)",
-                "schema": {
-                    "type": "string"
+            "post": {
+                "tags": [
+                    "AssetClass"
+                ],
+                "summary": "Crea un'asset class",
+                "operationId": "880443fef4c774d4c726a25ba37da5eb",
+                "responses": {
+                    "200": {
+                        "description": "Asset class creata con successo"
+                    },
+                    "400": {
+                        "description": "Asset class già esistente"
+                    }
                 }
             }
-        ],
-        "responses": {
-            "200": {
-                "description": "Asset class creata con successo"
-            },
-            "400": {
-                "description": "Asset class già esistente"
-            }
-        }
-    }
-},
+        },
         "/api/asset_classes/{id}": {
             "put": {
                 "tags": [
@@ -126,9 +73,6 @@
                     },
                     "404": {
                         "description": "Filtro non riconosciuto"
-                    },
-                    "201": {
-                        "description": ""
                     }
                 }
             }
