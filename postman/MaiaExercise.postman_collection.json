@@ -1,0 +1,356 @@
+{
+	"info": {
+		"_postman_id": "522ba970-4c44-44d3-ab1c-1d568524763e",
+		"name": "MaiaExercise",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "31180089"
+	},
+	"item": [
+		{
+			"name": "AssetClasses",
+			"item": [
+				{
+					"name": "GetAssetClassesFilter",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "5|Uh4JG9DYg7HkDGcfsr5RtLSHTZaxnn2Jx2BVHrOh8ba4c6d7"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/api/asset-classes?id=4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"asset-classes"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PostAssetClasses",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "content-type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "authorization",
+								"value": "Bearer 4|iQGWFYhjhjmXgPKSareYEa2hNdrFIwzvBTTc0bYd6c1cabed",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"AssetClass di prova numero 3 \",\r\n    \"service_id\": 1,\r\n    \"commission_id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/asset_classes"
+					},
+					"response": []
+				},
+				{
+					"name": "GetAssetClassesId",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "4|iQGWFYhjhjmXgPKSareYEa2hNdrFIwzvBTTc0bYd6c1cabed"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8000/api/asset_classes/15"
+					},
+					"response": []
+				},
+				{
+					"name": "PutAssetClasses",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "content-type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "authorization",
+								"value": "Bearer 4|iQGWFYhjhjmXgPKSareYEa2hNdrFIwzvBTTc0bYd6c1cabed",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Nuovo nome numero 2\",\r\n    \"service_id\": 1,\r\n    \"commission_id\": 1\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/asset_classes/15"
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteAssetClasses",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "4|iQGWFYhjhjmXgPKSareYEa2hNdrFIwzvBTTc0bYd6c1cabed"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8000/api/asset_classes/15"
+					},
+					"response": []
+				},
+				{
+					"name": "GetAssetClasses",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "6|USQEct5J6bLttNjRrftTaigmCds2Qj485kiHa7152cb4815b"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8000/api/asset_classes"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Service",
+			"item": [
+				{
+					"name": "PostService",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "4|iQGWFYhjhjmXgPKSareYEa2hNdrFIwzvBTTc0bYd6c1cabed"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Nuovo service\",\r\n    \"commission_id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/services"
+					},
+					"response": []
+				},
+				{
+					"name": "GetServiceId",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "4|iQGWFYhjhjmXgPKSareYEa2hNdrFIwzvBTTc0bYd6c1cabed"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8000/api/services/7"
+					},
+					"response": []
+				},
+				{
+					"name": "PutService",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "4|iQGWFYhjhjmXgPKSareYEa2hNdrFIwzvBTTc0bYd6c1cabed"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"nome aggiornato numero 2\",\r\n    \"commission_id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/services/7"
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteService",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "4|iQGWFYhjhjmXgPKSareYEa2hNdrFIwzvBTTc0bYd6c1cabed"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8000/api/services/7"
+					},
+					"response": []
+				},
+				{
+					"name": "GetService",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "4|iQGWFYhjhjmXgPKSareYEa2hNdrFIwzvBTTc0bYd6c1cabed"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8000/api/services"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Commission",
+			"item": [
+				{
+					"name": "PostCommission",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "content-type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "authorization",
+								"value": "Bearer 4|iQGWFYhjhjmXgPKSareYEa2hNdrFIwzvBTTc0bYd6c1cabed",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Commission di prova numero 5\",\r\n    \"description\": \"Descrizione di prova\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/commissions"
+					},
+					"response": []
+				},
+				{
+					"name": "GetCommissionId",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "4|iQGWFYhjhjmXgPKSareYEa2hNdrFIwzvBTTc0bYd6c1cabed"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8000/api/commissions/3"
+					},
+					"response": []
+				},
+				{
+					"name": "PutCommission",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "content-type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "authorization",
+								"value": "Bearer 4|iQGWFYhjhjmXgPKSareYEa2hNdrFIwzvBTTc0bYd6c1cabed",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"commission name aggiornato numero 2\",\r\n    \"description\": \"Descrizione della commissione di prova\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8000/api/commissions/3"
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteCommission",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "4|iQGWFYhjhjmXgPKSareYEa2hNdrFIwzvBTTc0bYd6c1cabed"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8000/api/commissions/4"
+					},
+					"response": []
+				},
+				{
+					"name": "GetCommission",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "4|iQGWFYhjhjmXgPKSareYEa2hNdrFIwzvBTTc0bYd6c1cabed"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8000/api/commissions"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
