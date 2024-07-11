@@ -2,8 +2,14 @@
     "openapi": "3.0.0",
     "info": {
         "title": "Documentazione API rest",
+        "description": "Per utilizzare le funzioni update e store, dopo aver incollato il token nell'authorization, cliccare su body, raw, JSON e sarà tutto già preimpostato",
         "version": "1.0"
     },
+    "servers": [
+        {
+            "url": "http://localhost"
+        }
+    ],
     "paths": {
         "/api/asset_classes": {
             "post": {
@@ -37,7 +43,7 @@
                         "description": "Asset class non trovata"
                     },
                     "400": {
-                        "description": "Questo nome già esiste"
+                        "description": "Asset class già esistente"
                     }
                 }
             },
@@ -63,7 +69,63 @@
                     "AssetClass"
                 ],
                 "summary": "Torna una lista di asset classes con i filtri specificati",
-                "operationId": "625b2fd1c55414ff140e838dd2734282",
+                "operationId": "9e3b4be32b67439c42ce81074fce5885",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "Filtro per ID dell'asset class",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "asset_name",
+                        "in": "query",
+                        "description": "Filtro per nome dell'asset class (case insensitive)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "service_name",
+                        "in": "query",
+                        "description": "Filtro per nome del servizio (case insensitive)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "service_id",
+                        "in": "query",
+                        "description": "Filtro per ID del servizio",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "commission_name",
+                        "in": "query",
+                        "description": "Filtro per nome della commissione (case insensitive)",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "commission_id",
+                        "in": "query",
+                        "description": "Filtro per ID della commissione",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Successo"
@@ -82,7 +144,7 @@
                 "tags": [
                     "Commissions"
                 ],
-                "summary": "Torna la lista delle commission",
+                "summary": "Torna una lista delle commission",
                 "operationId": "230f5c7f1ea9c9dad573c5434470c988",
                 "responses": {
                     "200": {
@@ -124,7 +186,7 @@
                         "description": "Commission già esistente"
                     },
                     "404": {
-                        "description": "Commission inesistente"
+                        "description": "Commission non trovata"
                     }
                 }
             },
@@ -187,11 +249,11 @@
                     "200": {
                         "description": "Update avvenuto con successo"
                     },
-                    "404": {
-                        "description": "Service inesistente"
-                    },
                     "400": {
                         "description": "Service già esistente"
+                    },
+                    "404": {
+                        "description": "Service non trovato"
                     }
                 }
             },
@@ -212,21 +274,18 @@
             }
         }
     },
-    "tags": [
-        {
-            "name": "AssetClass",
-            "description": "AssetClass"
-        },
-        {
-            "name": "Commissions",
-            "description": "Commissions"
-        },
-        {
-            "name": "Service",
-            "description": "Service"
-        }
-    ],
     "components": {
+        "responses": {
+            "200": {
+                "description": "Richiesta completata con successo"
+            },
+            "400": {
+                "description": "Richiesta non valida: succede quando uno o più parametri sono errati o mancano, o quando quell'elemento inserito esiste già"
+            },
+            "404": {
+                "description": "Risorsa non trovata. Questo accade quando quell'elemento non è presente nel database"
+            }
+        },
         "securitySchemes": {
             "passport": {
                 "type": "oauth2",
@@ -249,5 +308,19 @@
                 "in": "header"
             }
         }
-    }
+    },
+    "tags": [
+        {
+            "name": "AssetClass",
+            "description": "AssetClass"
+        },
+        {
+            "name": "Commissions",
+            "description": "Commissions"
+        },
+        {
+            "name": "Service",
+            "description": "Service"
+        }
+    ]
 }

@@ -22,7 +22,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/notes/importExcel', [APINoteController::class, 'importNotesExcel']);
 
     // AssetClass
-    Route::get('/asset_classes', [AssetClassController::class, 'getAssetClasses']);
+    Route::get('/asset_classes', [AssetClassController::class, 'index']);
     Route::post('/asset_classes', [AssetClassController::class, 'store']);
     Route::get('/asset_classes/{id}', [AssetClassController::class, 'show']);
     Route::put('/asset_classes/{id}', [AssetClassController::class, 'update']);

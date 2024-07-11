@@ -60,8 +60,8 @@ class ServiceController extends Controller
      *     summary="Fa l'update del service con l'id specificato",
      *     tags={"Service"},
      *     @OA\Response(response=200, description="Update avvenuto con successo"),
-     *     @OA\Response(response=404, description="Service inesistente"),
-     *     @OA\Response(response=400, description="Service già esistente")
+     *     @OA\Response(response=400, description="Service già esistente"),
+     *     @OA\Response(response=404, description="Service non trovato"),
      * )
      */
     public function update(Request $request, $id)

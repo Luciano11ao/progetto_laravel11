@@ -13,7 +13,7 @@ class CommissionController extends Controller
     /**
      * @OA\Get(
      *     path="/api/commissions",
-     *     summary="Torna la lista delle commission",
+     *     summary="Torna una lista delle commission",
      *     tags={"Commissions"},
      *     @OA\Response(response=200, description="Successo"),
      *     @OA\Response(response=400, description="Errore")
@@ -63,7 +63,7 @@ class CommissionController extends Controller
      *     tags={"Commissions"},
      *     @OA\Response(response=200, description="Update avvenuto con successo"),
      *     @OA\Response(response=400, description="Commission già esistente"),
-     *     @OA\Response(response=404, description="Commission inesistente")
+     *     @OA\Response(response=404, description="Commission non trovata")
      * )
      */
     public function update(Request $request, $id)
