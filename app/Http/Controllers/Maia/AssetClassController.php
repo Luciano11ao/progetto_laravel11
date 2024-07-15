@@ -198,12 +198,12 @@ class AssetClassController extends Controller
     }
 
     if ($request->has('asset_name')) {
-        $query->where('name', 'LIKE', $request->input('asset_name') . '%');
-    }        
+        $query->where('name', 'LIKE', '%' . $request->input('asset_name') . '%');
+    }      
 
     if ($request->has('service_name')) {
         $query->whereHas('service', function($q) use ($request) {
-            $q->where('name', 'LIKE', $request->input('service_name') . '%');
+            $q->where('name', 'LIKE', '%' . $request->input('service_name') . '%');
         });
     }
 
@@ -214,7 +214,7 @@ class AssetClassController extends Controller
     if ($request->has('commission_name')) {
         $query->whereHas('service', function($q) use ($request) {
             $q->whereHas('commission', function($cq) use ($request) {
-                $cq->where('name', 'LIKE', $request->input('commission_name') . '%');
+                $cq->where('name', 'LIKE', '%' . $request->input('commission_name') . '%');
             });
         });
     }
